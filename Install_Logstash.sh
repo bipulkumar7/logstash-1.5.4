@@ -34,27 +34,27 @@ clear
 	exit 1
 	fi
 
-ee_info "OH!! You have passed the Authentication part."
+	ee_info "OH!! You have passed the Authentication part."
 #UPDATING UBUNTU
-ee_echo "Let me Update your System. Please wait..."
-	apt-get update &>> /dev/null
-ee_info "Finally this system is ready to install Logstash with it's dependencies"
+	# ee_echo "Let me Update your System. Please wait..."
+	# apt-get update &>> /dev/null
+	# ee_info "Finally this system is ready to install Logstash with it's dependencies"
 
 #CHECKING JAVA VERSION AND IT PACKAGE IS INSTALLED OR NOT
 
-version=$(java -version 2>&1 | sed 's/version "\(.*\)\(.*\)\"/\1\2/; 1q')
+	  version=$(java -version 2>&1 | sed 's/version "\(.*\)\(.*\)\"/\1\2/; 1q')
 
-if [$? -ne 0]; then
+	 if [$? -ne 0]; then
 		ee_echo "Oh noo!! you don't have JAVA/OpenJDK package Installed. Let me install it for you, please wait.."
 	apt-get -y install default-jre &>> /dev/null
 	apt-get -y install default-jdk &>> /dev/null
 	else
 		ee_info "OH!! you already have $version installed"	
-fi
+	fi
 
 #DOWNLOADING LATEST VERSION FROM LOGSTASH THEN UNZIP IT LOCALLY .
 	ee_echo " I am going to download Logstash from http://download.elastic.co/logstash/logstash-1.5.4.tar.gz please wait.."
-	cd ~ &&  wget https://download.elastic.co/logstash/logstash/logstash-1.5.4.tar.gz >> $TEMP 2>&1
+	cd ~ &&  wget https://download.elastic.co/logstash/logstash/logstash-1.5.4.tar.gz #>> $TEMP 2>&1
         if [ $? -eq 0 ]; then
  	ee_info "Done!! latest Logstash has been downloaded Successfully"
 	  else

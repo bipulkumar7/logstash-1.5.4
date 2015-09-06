@@ -1,0 +1,112 @@
+In a layman language, Logstash is a tool for managing events and logs. You can use it to collect logs, parse them, and store them for later use (like, for searching). If you store them in Elasticsearch, you can view and analyze them with Kibana. And it is founded by Jordan Sissel.
+
+
+So basically a logstash is a tool used for the following task:
+	1. receiving, 
+	2. processing 
+	3. outputing logs
+
+The logs can be either System logs, error logs or any application logs.
+
+ 	_________________________________________________________________________________________________________
+        |													|
+	| ElasticSearch [Backend datastore] ------ Logstash [Middle ] ---------- Kibana [Frontend reporting]	|
+        |					 								|
+	|					{DATA Receiving+Processing					|
+	|	//BIPUL.NET\\			     and Outputing logs}	//BIPUL.NET\\			|
+	|_______________________________________________________________________________________________________|
+							  ||        
+							  /\
+							 /  \		
+				       >>>>>>>>>>>>>>>>>/    \>>>>>>>>>>>>>>>
+				      |				            | 
+			       _______|_______                     _________|_______
+			       |    INPUT    |                     |    OUTPUT     |
+			       |DATA SOURCE  |			   |  DATA SOURCE  |
+			       |_____________|	                   |_______________|
+
+
+
+FOCUSING ON LOGSTASH:
+
+Logstash acts as the workhorse, creating a powerful pipeline for storing,querying and analyzing our logs.
+
+					_________________________		
+					|  LOGSTASH INSTANCE	|		
+	_________________		|_______________________|		___________________
+	|		|		|			|		|		  |
+	| DATA	SOUCE	|  		|INPUT		OUTPUT	|		|   DATA 	  |
+	|_______________|------------->	|PLUGIN		PLUGIN	|-------------->|   DESTINATION	  |
+	|input{ stdin{}	|		|   |		   |	|		|_________________|
+	|	}	|		|   |		   |	|		| output{ stdout{}|
+        |_______________| 		|   |==> FILTER	==>|	|		|        }        |
+					|	 PLUGIN		|		|_________________|
+			//BIPUL.NET\\	|_______________________| //BIPUL.NET\\
+					|			|
+					|      filter{}		|
+					|_______________________|
+
+
+
+SO COMPLETE PRINCIPLE OF CONFIGURATION PIPELINE:
+	
+	input { } filter { } output { }
+
+ # <- Use this character at the beginning of line to indicates a comment.
+
+We run Logstash with  bin/logstash -e 'input { stdin {} } output { stdout {} }', where "e" denotes that
+Logstash accept a configuration directly from the command line and input called "stdin", and an output called "stdout". 
+And we get the output in form of echoed back.
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+bin/logstash -e 'input { stdin {} } output { stdout {} }'
+Logstash startup completed
+This is a test
+2015-09-05T17:44:29.776Z Bipul This is a test
+------------------------------------------------------------
+  |  |  |  |  |  |   |    |         |
+YYYY-MM-dd;HH:mm:ss.SSS  Host    Message/Logs
+This timestamp(2015-09-05T17:44:29.776Z) can also be know as (2015-09-05T12:44:29.776-(-05:00:00))
+And Z represent time in UTC.
+https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations
+________________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________________
+bin/logstash -e 'input { stdin {} } output { stdout {codec => json} }'
+Logstash startup completed
+Hi This is my test
+{"message":"Hi This is my test","@version":"1","@timestamp":"2015-09-05T17:28:13.430Z","host":"Bipul"}
+--------------------------------------------------------------
+codec= It is used to encode and decode the files here.
+JSON= Java Script Object Notation. It is a lightweight data-interchange format. It is easy for humans to read and write. 
+      And also easy for machines to parse and generate.
+Parse=resolve (a sentence) into its component parts and describe their syntactic roles.
+_________________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________________
+bin/logstash -e 'input { stdin {} } output { stdout {codec => rubydebug} }'
+Logstash startup completed
+This is a test          
+{
+       "message" => "This is a test",
+      "@version" => "1",
+    "@timestamp" => "2015-09-05T17:57:28.774Z",
+          "host" => "Bipul"
+}
+-------------------------------------------------------------
+rubydebug = It is a codec in ruby, that makes the output data in colorful and sorted way.
+__________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________
+
+
+
+
+Lets take Ubuntu /var/log/auth.log  Save below script with any name.conf file inside logstash directory
+input {
+            file {
+                   path => "/var/log/auth.log"
+                   start_position => beginning
+                  }
+         }
+      output {
+                        stdout {codec => rubydebug }
+                   }
+Run the command in terminal. And check the output in below Terminal.
