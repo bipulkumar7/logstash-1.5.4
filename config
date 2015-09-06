@@ -1,0 +1,9 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+[remote "origin"]
+	url = https://github.com/vipullinux/logstash-1.5.4.git
+[remote "pb"]
+	url = git://github.com/vipullinux/logstash-1.5.4.git
+	fetch = +refs/heads/*:refs/remotes/pb/*
