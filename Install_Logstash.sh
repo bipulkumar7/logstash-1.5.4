@@ -44,7 +44,7 @@ clear
 
 	  version=$(java -version 2>&1 | sed 's/version "\(.*\)\(.*\)\"/\1\2/; 1q')
 
-	 if [$? -ne 0]; then
+	 if [ $? -ne 0]; then
 		ee_echo "Oh noo!! you don't have JAVA/OpenJDK package Installed. Let me install it for you, please wait.."
 	apt-get -y install default-jre &>> /dev/null
 	apt-get -y install default-jdk &>> /dev/null
