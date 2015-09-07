@@ -1,4 +1,6 @@
-In a layman language, Logstash is a tool for managing events and logs. You can use it to collect logs, parse them, and store them for later use (like, for searching). If you store them in Elasticsearch, you can view and analyze them with Kibana. And it is founded by Jordan Sissel.
+In a layman language, Logstash is a tool for managing events and logs. You can use it to collect logs, parse them, 
+and store them for later use (like, for searching). If you store them in Elasticsearch, you can view and analyze
+them with Kibana. And it is founded by Jordan Sissel.
 
 
 So basically a logstash is a tool used for the following task:
