@@ -107,6 +107,8 @@ input {
                   }
          }
       output {
-                        stdout {codec => rubydebug }
+                        stdout {codec => rubydebug } 
                    }
-Run the command in terminal. And check the output in below Terminal.
+Run the command in terminal A. And check the output in below Terminal A. In meanwhile open terminal B and give some file
+Permission user authentication command. You will find every times a New timestamp with command logs is generated in
+Terminal A.
