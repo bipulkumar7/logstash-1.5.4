@@ -71,10 +71,3 @@ clear
 	ee_fail "ERROR:Failed to extract the .tar.gz file"
 	fi
 	ee_echo "Thank's And keep coming on https://bipul.net"
-
-
-
-
-
-
-
