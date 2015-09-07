@@ -53,7 +53,7 @@ clear
 	fi
 
 #DOWNLOADING LATEST VERSION FROM LOGSTASH THEN UNZIP IT LOCALLY .
-	ee_echo " I am going to download Logstash from http://download.elastic.co/logstash/logstash-1.5.4.tar.gz please wait.."
+	ee_echo " downloading Logstash from http://download.elastic.co/logstash/logstash-1.5.4.tar.gz please wait.."
 	cd ~ &&  wget https://download.elastic.co/logstash/logstash/logstash-1.5.4.tar.gz #>> $TEMP 2>&1
         if [ $? -eq 0 ]; then
  	ee_info "Done!! latest Logstash has been downloaded Successfully"
@@ -64,7 +64,7 @@ clear
 	ee_echo "Let me extract the tar file"
 	cd ~ && tar zxvf logstash-1.5.4.tar.gz &>> /dev/null
        if [ $? -eq 0 ]; then
-	ee_info "Logstash file has been and extracted Successfully"
+	ee_info "Logstash file has been extracted Successfully inside user home directory"
 	rm -rf logstash-1.5.4.tar.gz
 	cd logstash-1.5.4
 	else
