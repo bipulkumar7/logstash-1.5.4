@@ -37,9 +37,9 @@ Logstash acts as the workhorse, creating a powerful pipeline for storing,queryin
 	|		|		|			|		|		  |
 	| DATA	SOUCE	|  		|INPUT		OUTPUT	|		|   DATA 	  |
 	|_______________|------------->	|PLUGIN		PLUGIN	|-------------->|   DESTINATION	  |
-	|input{ stdin{}	|		|   |		   |	|		|_________________|
-	|	}	|		|   |		   |	|		| output{ stdout{}|
-        |_______________| 		|   |==> FILTER	==>|	|		|        }        |
+	|input{}	|		|   |		   |	|		|_________________|
+	|		|		|   |		   |	|		| output{}        |
+        |_______________| 		|   |==> FILTER	==>|	|		|                 |
 					|	 PLUGIN		|		|_________________|
 			//BIPUL.NET\\	|_______________________| //BIPUL.NET\\
 					|			|
