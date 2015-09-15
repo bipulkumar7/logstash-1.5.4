@@ -27,18 +27,18 @@ clear
 
 #Checking User Authentication
 	if [[ $EUID -eq 0 ]]; then
-		ee_info "Thank you for giving me a SUDO user privilege"
+	   ee_info "Please give a sudo user privilege"
 	else
-		ee_fail "I need a SUDO privilage !! :( "
+		ee_fail "Need a sudo user privilage !! :( "
 		ee_fail "Use: sudo bash Install_Logstash.sh"
 	exit 1
 	fi
 
 	ee_info "OH!! You have passed the Authentication part."
 #UPDATING UBUNTU
-	# ee_echo "Let me Update your System. Please wait..."
-	# apt-get update &>> /dev/null
-	# ee_info "Finally this system is ready to install Logstash with it's dependencies"
+	 ee_echo "Let me Update your System. Please wait..."
+	 apt-get update &>> /dev/null
+	 ee_info "Finally this system is ready to install Logstash with it's dependencies"
 
 #CHECKING JAVA VERSION AND IT PACKAGE IS INSTALLED OR NOT
 
